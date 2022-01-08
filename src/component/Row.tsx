@@ -40,7 +40,7 @@ const Row = ({title, fetchUrl, isLargeRow}: Props) => {
         fetchData();
     }, [fetchUrl]);
 
-    // console.log(movies);
+    console.log(movies);
 
     const opts: Options = {
         height:"390",
@@ -54,7 +54,7 @@ const Row = ({title, fetchUrl, isLargeRow}: Props) => {
         if(trailerUrl) {
             setTrailerUrl("");
         } else {
-            const API_KEY = "" 
+            const API_KEY = process.env.REACT_APP_TMDB_KEY;
             let trailerurl = await axios.get(
                 `https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=${API_KEY}`
             );
@@ -63,10 +63,6 @@ const Row = ({title, fetchUrl, isLargeRow}: Props) => {
             setTrailerUrl(trailerurl.data.results[0]?.key);
             console.log(trailerurl.data.results[0]?.key);
         }
-
-        // const movieTrailer = require('movie-trailer')
-
-        // movieTrailer({tmdbId: movie.id});
     };
 
     const base_url = "https://image.tmdb.org/t/p/original";

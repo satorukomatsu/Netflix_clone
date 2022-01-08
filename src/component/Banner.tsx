@@ -15,7 +15,7 @@ export const Banner = () => {
     const [movie, setMovie] = useState<movieProps>({});
     useEffect(() => {
         async function fetchData() {
-            const API_KEY = ""
+            const API_KEY = process.env.REACT_APP_TMDB_KEY;
             const feachNetflixOriginals = `/discover/tv?api_key=${API_KEY}&with_networks=213`
             const request = await axios.get("https://api.themoviedb.org/3"+feachNetflixOriginals);
             console.log(request.data.result);
